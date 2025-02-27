@@ -9,8 +9,14 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Configure Git
         run: |
@@ -36,7 +42,9 @@ jobs:
       
       - name: Increment version
         run: |
-          pnpm version patch --no-git-tag-version
+          pnpm version patch \
+            --no-git-tag-version \
+            --allow-same-version
           VERSION=$(node -p "require('./package.json').version")
           git add package.json
           git commit -m "Bump version to ${VERSION}"
