@@ -1,6 +1,6 @@
-# mcp-cli MCP Server
+# mcp-cli-exec MCP Server
 
-A powerful CLI command execution MCP server that enables running shell commands with structured output.
+A powerful CLI command execution MCP server that enables running shell commands with structured output. This package focuses specifically on command execution functionality, differentiating it from other MCP CLI tools.
 
 ## Features
 
@@ -34,9 +34,9 @@ Commands return structured results including:
 
 Install from npm:
 ```bash
-npm install @jakenuts/mcp-cli
-# or
-pnpm add @jakenuts/mcp-cli
+npm install mcp-cli-exec
+# or with pnpm
+pnpm add mcp-cli-exec
 ```
 
 ### For Cline VSCode Extension
@@ -46,9 +46,9 @@ Add to `%APPDATA%/Code - Insiders/User/globalStorage/rooveterinaryinc.roo-cline/
 ```json
 {
   "mcpServers": {
-    "mcp-cli": {
+    "mcp-cli-exec": {
       "command": "npx",
-      "args": ["-y", "@jakenuts/mcp-cli"]
+      "args": ["-y", "mcp-cli-exec"]
     }
   }
 }
@@ -64,9 +64,9 @@ MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 ```json
 {
   "mcpServers": {
-    "mcp-cli": {
+    "mcp-cli-exec": {
       "command": "npx",
-      "args": ["-y", "@jakenuts/mcp-cli"]
+      "args": ["-y", "mcp-cli-exec"]
     }
   }
 }
@@ -79,12 +79,12 @@ If you encounter the ENOENT spawn npx issue on Windows, use this alternative con
 ```json
 {
   "mcpServers": {
-    "mcp-cli": {
+    "mcp-cli-exec": {
       "command": "C:\\path\\to\\node\\node.exe",
       "args": [
         "C:\\path\\to\\node\\node_modules\\npm\\bin\\npx-cli.js",
         "-y",
-        "@jakenuts/mcp-cli"
+        "mcp-cli-exec"
       ]
     }
   }
