@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import {
   CallToolRequestSchema,
@@ -9,6 +10,9 @@ import { CommandExecutor } from './executor.js';
 import { ExecResult, CommandResult } from './types.js';
 import { isValidExecArgs, isValidExecRawArgs } from './validation.js';
 
+const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf-8'));
+const { name, version } = pkg;
+
 export class CliServer {
   private server: Server;
   private executor: CommandExecutor;
@@ -16,8 +20,8 @@ export class CliServer {
   constructor() {
     this.server = new Server(
       {
-        name: 'mcp-cli',
-        version: '0.1.0',
+        name,
+        version,
       },
       {
         capabilities: {
@@ -222,7 +226,7 @@ export class CliServer {
 
   async connect(transport: any) {
     await this.server.connect(transport);
-    console.error('CLI MCP server running on stdio');
+    console.error(`${name} v${version} running on stdio`);
   }
 
   async close() {
