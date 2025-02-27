@@ -15,15 +15,17 @@ Execute a raw CLI command and return structured output
 #### cli-exec
 Execute one or more CLI commands in a specific working directory
 - Supports single commands, && chained commands, or array of commands
-- Tracks and updates working directory between commands
+- All commands execute in the specified working directory
 - Returns detailed results for each command:
   - Success/failure status
   - Exit code
   - stdout and stderr (ANSI codes stripped)
   - Execution duration
-  - Current working directory
+  - Working directory
 - Stops on first command failure
 - Optional timeout per command (default: 5 minutes)
+
+Note: Due to execution context limitations, each command runs independently. Directory changes (cd) within commands do not affect subsequent commands. All commands execute in the initially specified working directory.
 
 ### Output Format
 
@@ -62,13 +64,13 @@ Single command in specific directory:
 }
 ```
 
-Multiple commands:
+Multiple commands (all run in the same working directory):
 ```json
 {
   "workingDirectory": "C:\\project",
   "commands": [
     "dir /b",
-    "echo Building project && npm run build"
+    "npm run build"
   ]
 }
 ```
@@ -134,7 +136,6 @@ If you encounter the ENOENT spawn npx issue on Windows, use this alternative con
 }
 ```
 
-
 ## Development
 
 Install dependencies:
@@ -182,3 +183,4 @@ The server includes comprehensive error handling:
 - Default command timeout: 5 minutes
 - Supports Windows and Unix-like systems (use appropriate commands for your OS, e.g., 'dir' vs 'ls')
 - Executes commands sequentially, stopping on first failure
+- Each command runs independently in the specified working directory

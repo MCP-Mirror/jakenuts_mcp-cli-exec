@@ -38,18 +38,15 @@ export class CommandExecutor {
     timeout?: number
   ): Promise<CommandResult[]> {
     const results: CommandResult[] = [];
-    let currentCwd = workingDirectory;
 
     for (const command of commands) {
       const cmdStartTime = Date.now();
       try {    
         const result = await this.executeCommand(
           command,
-          currentCwd,
+          workingDirectory,
           timeout
         );
-
-        currentCwd = result.cwd || currentCwd;
 
         const duration = Date.now() - cmdStartTime;
 
@@ -60,7 +57,7 @@ export class CommandExecutor {
           stdout: result.stdout,
           stderr: result.stderr,
           duration,
-          workingDirectory: currentCwd,
+          workingDirectory,
         });
 
         // Stop execution if a command fails
@@ -76,7 +73,7 @@ export class CommandExecutor {
           stderr: '',
           error: error instanceof Error ? error.message : String(error),
           duration: Date.now() - cmdStartTime,
-          workingDirectory: currentCwd,
+          workingDirectory,
         });
         break;
       }
