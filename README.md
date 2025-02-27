@@ -32,6 +32,13 @@ Commands return structured results including:
 
 ## Installation
 
+Install from npm:
+```bash
+npm install @jakenuts/mcp-cli
+# or
+pnpm add @jakenuts/mcp-cli
+```
+
 ### For Cline VSCode Extension
 
 Add to `%APPDATA%/Code - Insiders/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json`:
@@ -40,8 +47,8 @@ Add to `%APPDATA%/Code - Insiders/User/globalStorage/rooveterinaryinc.roo-cline/
 {
   "mcpServers": {
     "mcp-cli": {
-      "command": "node",
-      "args": ["path/to/mcp-cli/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@jakenuts/mcp-cli"]
     }
   }
 }
@@ -58,12 +65,32 @@ MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 {
   "mcpServers": {
     "mcp-cli": {
-      "command": "node",
-      "args": ["path/to/mcp-cli/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@jakenuts/mcp-cli"]
     }
   }
 }
 ```
+
+### Special Windows Configuration
+
+If you encounter the ENOENT spawn npx issue on Windows, use this alternative configuration that specifies the full paths:
+
+```json
+{
+  "mcpServers": {
+    "mcp-cli": {
+      "command": "C:\\path\\to\\node\\node.exe",
+      "args": [
+        "C:\\path\\to\\node\\node_modules\\npm\\bin\\npx-cli.js",
+        "-y",
+        "@jakenuts/mcp-cli"
+      ]
+    }
+  }
+}
+```
+
 
 ## Development
 
