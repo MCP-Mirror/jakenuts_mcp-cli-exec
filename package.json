@@ -1,6 +1,6 @@
 {
   "name": "mcp-cli-exec",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A powerful CLI command execution MCP server that enables running shell commands with structured output",
   "type": "module",
   "bin": {
