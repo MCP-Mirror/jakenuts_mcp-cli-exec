@@ -30,6 +30,44 @@ Commands return structured results including:
 - Working directory
 - Detailed error information if applicable
 
+### Example Usage
+
+#### cli-exec-raw
+Simple command execution:
+```json
+{
+  "command": "echo Hello World"
+}
+```
+
+With timeout:
+```json
+{
+  "command": "long-running-script.sh",
+  "timeout": 300000
+}
+```
+
+#### cli-exec
+Single command in specific directory:
+```json
+{
+  "workingDirectory": "/path/to/project",
+  "commands": "npm install"
+}
+```
+
+Multiple commands:
+```json
+{
+  "workingDirectory": "C:\\project",
+  "commands": [
+    "dir /b",
+    "echo Building project && npm run build"
+  ]
+}
+```
+
 ## Installation
 
 Install from npm:
@@ -80,9 +118,9 @@ If you encounter the ENOENT spawn npx issue on Windows, use this alternative con
 {
   "mcpServers": {
     "mcp-cli-exec": {
-      "command": "C:\\path\\to\\node\\node.exe",
+      "command": "C:\\Users\\jim\\AppData\\Roaming\\nvm\\v22.1.0\\node.exe",
       "args": [
-        "C:\\path\\to\\node\\node_modules\\npm\\bin\\npx-cli.js",
+        "C:\\Users\\jim\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npx-cli.js",
         "-y",
         "mcp-cli-exec"
       ]
@@ -137,6 +175,6 @@ The server includes comprehensive error handling:
 - Built with TypeScript and the MCP SDK
 - Uses execa for reliable command execution
 - Default command timeout: 5 minutes
-- Supports Windows and Unix-like systems
+- Supports Windows and Unix-like systems (use appropriate commands for your OS, e.g., 'dir' vs 'ls')
 - Maintains working directory context
 - Handles command chaining and sequential execution
