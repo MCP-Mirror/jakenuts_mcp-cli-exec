@@ -8,17 +8,22 @@ A powerful CLI command execution MCP server that enables running shell commands 
 
 #### cli-exec-raw
 Execute a raw CLI command and return structured output
-- Takes a command string and optional timeout
+- Takes a command string and optional timeout (default: 5 minutes)
 - Returns detailed execution results including stdout, stderr, exit code
 - Handles errors gracefully with structured error responses
 
 #### cli-exec
 Execute one or more CLI commands in a specific working directory
 - Supports single commands, && chained commands, or array of commands
-- Maintains working directory context between commands
-- Returns detailed results for each command execution
+- Tracks and updates working directory between commands
+- Returns detailed results for each command:
+  - Success/failure status
+  - Exit code
+  - stdout and stderr (ANSI codes stripped)
+  - Execution duration
+  - Current working directory
 - Stops on first command failure
-- Optional timeout per command
+- Optional timeout per command (default: 5 minutes)
 
 ### Output Format
 
@@ -176,5 +181,4 @@ The server includes comprehensive error handling:
 - Uses execa for reliable command execution
 - Default command timeout: 5 minutes
 - Supports Windows and Unix-like systems (use appropriate commands for your OS, e.g., 'dir' vs 'ls')
-- Maintains working directory context
-- Handles command chaining and sequential execution
+- Executes commands sequentially, stopping on first failure
