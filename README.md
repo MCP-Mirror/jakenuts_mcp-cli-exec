@@ -77,12 +77,14 @@ Multiple commands (all run in the same working directory):
 
 ## Installation
 
-Install from npm:
+Optionally install from npm:
+
 ```bash
-npm install mcp-cli-exec
+npm install -g mcp-cli-exec
 # or with pnpm
-pnpm add mcp-cli-exec
+pnpm add -g mcp-cli-exec
 ```
+Or just use npx in your configuration
 
 ### For Cline VSCode Extension
 
