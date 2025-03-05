@@ -2,7 +2,7 @@
   "name": "mcp-cli-exec",
   "version": "1.0.4",
   "description": "A powerful CLI command execution MCP server that enables running shell commands with structured output",
-  "type": "module",
+  "type": "module",  
   "bin": {
     "mcp-cli-exec": "./build/index.js"
   },
@@ -27,7 +27,7 @@
   "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakenuts/mcp-cli-exec.git"
+    "url": "https://github.com/jakenuts/mcp-cli.git"
   },
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,7 @@
     "shell",
     "modelcontextprotocol"
   ],
-  "author": "Model Context Protocol",
+  "author": "jakenuts",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
